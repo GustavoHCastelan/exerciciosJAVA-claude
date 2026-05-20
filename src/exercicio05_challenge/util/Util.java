@@ -3,6 +3,7 @@ package exercicio05_challenge.util;
 import exercicio05_challenge.info_veiculo.Locacao;
 import exercicio05_challenge.info_veiculo.Veiculo;
 import exercicio05_challenge.veiculos.Carro;
+import exercicio05_challenge.veiculos.Moto;
 
 import javax.swing.*;
 
@@ -55,13 +56,26 @@ public class Util {
             opcao = parseInt(showInputDialog(aux));
             switch (opcao) {
                 case 1:
-                    String placa = showInputDialog("Placa:");
-                    String marca = showInputDialog("Marca:");
-                    double precoDiaria = parseDouble(showInputDialog("Preço da diária:"));
-                    int numPortas = parseInt(showInputDialog("Número de portas:"));
+                    String veiculo = showInputDialog("Carro ou Moto?");
+                    if (veiculo.equals("Carro") || veiculo.equals("carro")){
+                        String placa = showInputDialog("Placa do Carro:");
+                        String marca = showInputDialog("Marca do Carro:");
+                        double precoDiaria = parseDouble(showInputDialog("Preço da diária:"));
+                        int numPortas = parseInt(showInputDialog("Número de portas:"));
 
-                    Carro carro = new Carro(placa, marca, precoDiaria, numPortas);
-                    listaV.add(carro);
+                        Carro carro = new Carro(placa, marca, precoDiaria, numPortas);
+                        listaV.add(carro);
+                    }else if (veiculo.equals("Moto") || veiculo.equals("moto")){
+                        String placa = showInputDialog("Placa da Moto:");
+                        String marca = showInputDialog("Marca da Moto:");
+                        double precoDiaria = parseDouble(showInputDialog("Preço da diária:"));
+                        int cilindradas = parseInt(showInputDialog("Cilindradas: "));
+
+                        Moto moto = new Moto(placa, marca, precoDiaria, cilindradas);
+                        listaV.add(moto);
+                    }else {
+                        showMessageDialog(null, "Veículo não reconhecido.");
+                    }
                     break;
                 case 2:
                   break;
@@ -117,7 +131,7 @@ public class Util {
 
         Veiculo veiculo = listaV.get(i-1);
         String nomeCliente = showInputDialog("Digite seu nome: ");
-        int dias = parseInt(showInputDialog("Digite quantos dias ficará com o carro: "));
+        int dias = parseInt(showInputDialog("Digite quantos dias ficará com o veículo: "));
 
         Locacao locacao = new Locacao(veiculo,nomeCliente,dias);
         listaL.add(locacao);
